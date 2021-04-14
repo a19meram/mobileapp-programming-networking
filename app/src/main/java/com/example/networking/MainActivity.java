@@ -10,6 +10,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -76,13 +81,29 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String json) {
 
+            try {
+                JSONArray jsonArray = new JSONArray(json);
+                for (int i = 0; i < jsonArray.length(); i++){
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    String name = jsonObject.getString("name");
+                    String location = jsonObject.getString("location");
+                    int size = jsonObject.getInt("size");
+
+                    MountainName.add(name);
+                    MountainLocation.add(location);
+                    MountainSize.add(size);
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, R.layout.list_item_textview, R.id.list_item_textview, MountainName);
             ListView my_listview = (ListView) findViewById(R.id.my_listview);
             my_listview.setAdapter(adapter);
             my_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 }
             });
 
