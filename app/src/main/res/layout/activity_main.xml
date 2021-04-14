@@ -8,14 +8,34 @@
 
     <ListView
         android:id="@+id/my_listview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="281dp"
+        android:layout_height="287dp"
+        android:layout_margin="30dp"
+        android:layout_marginTop="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="100dp"
-        android:layout_margin="30dp"
-        />
+        app:layout_constraintVertical_bias="0.055">
 
+
+    </ListView>
+
+    <TextView
+        android:layout_width="330dp"
+        android:layout_height="127dp"
+        android:background="@color/backgroundColor"
+        android:gravity="center_horizontal"
+        android:text="You have to open the toast by a click on the snackbar to se information about the mountains!"
+        android:textAlignment="center"
+        android:textColor="@color/textColor"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_listview"
+        app:layout_constraintVertical_bias="0.231"
+        tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>
