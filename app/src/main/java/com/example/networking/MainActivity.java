@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
                 final ListView my_listview = (ListView) findViewById(R.id.my_listview);
                 my_listview.setAdapter(adapter);
 
-                Snackbar snackbar = make(my_listview,"Snackbar With Action", LENGTH_LONG);
+                Snackbar snackbar = make(my_listview,"Open------------------------------>", LENGTH_LONG);
                 snackbar.setAction("Open Toast", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
