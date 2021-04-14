@@ -93,19 +93,21 @@ public class MainActivity extends AppCompatActivity {
                     MountainLocation.add(location);
                     MountainSize.add(size);
                 }
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, R.layout.list_item_textview, R.id.list_item_textview, MountainName);
+                ListView my_listview = (ListView) findViewById(R.id.my_listview);
+                my_listview.setAdapter(adapter);
+                my_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
+                        Toast.makeText(getApplicationContext(), MountainName.get(i) + "is located in mountain range" + MountainLocation.get(i) + "and reaches" + MountainSize.get(i) + "m above the sea level.", Toast.LENGTH_LONG).show();
+                    }
+                });
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, R.layout.list_item_textview, R.id.list_item_textview, MountainName);
-            ListView my_listview = (ListView) findViewById(R.id.my_listview);
-            my_listview.setAdapter(adapter);
-            my_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                }
-            });
+
 
             Log.d("TAG", json);
         }
