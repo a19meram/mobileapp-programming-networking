@@ -99,16 +99,13 @@ public class MainActivity extends AppCompatActivity {
                 my_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
-                        Toast.makeText(getApplicationContext(), MountainName.get(i) + "is located in mountain range" + MountainLocation.get(i) + "and reaches" + MountainSize.get(i) + "m above the sea level.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), MountainName.get(i) + " is located in mountain range " + MountainLocation.get(i) + " and reaches " + MountainSize.get(i) + " m above the sea level.", Toast.LENGTH_LONG).show();
                     }
                 });
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
-
-
             Log.d("TAG", json);
         }
     }

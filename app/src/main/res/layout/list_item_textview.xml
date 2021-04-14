@@ -4,6 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/list_item_textview"
+    android:textAlignment="center"
+    android:gravity="center_horizontal"
+    android:textSize="35dp"
+    android:layout_marginTop="50dp"
+    android:textColor="@color/colorPrimaryDark"
+    android:background="@color/colorAccent"
     >
 
 </TextView>
