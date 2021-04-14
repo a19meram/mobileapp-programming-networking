@@ -1,7 +1,5 @@
 package com.example.networking;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -11,6 +9,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,6 +26,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+
+import static com.google.android.material.snackbar.Snackbar.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -94,14 +98,24 @@ public class MainActivity extends AppCompatActivity {
                     MountainSize.add(size);
                 }
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, R.layout.list_item_textview, R.id.list_item_textview, MountainName);
-                ListView my_listview = (ListView) findViewById(R.id.my_listview);
+                final ListView my_listview = (ListView) findViewById(R.id.my_listview);
                 my_listview.setAdapter(adapter);
-                my_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                Snackbar snackbar = make(my_listview,"Snackbar With Action", LENGTH_LONG);
+                snackbar.setAction("Open Toast", new View.OnClickListener() {
                     @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
-                        Toast.makeText(getApplicationContext(), MountainName.get(i) + " is located in mountain range " + MountainLocation.get(i) + " and reaches " + MountainSize.get(i) + " m above the sea level.", Toast.LENGTH_LONG).show();
+                    public void onClick(View view) {
+                        my_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
+                                Toast.makeText(getApplicationContext(), MountainName.get(i) + " is located in mountain range " + MountainLocation.get(i) + " and reaches " + MountainSize.get(i) + " m above the sea level.", Toast.LENGTH_LONG).show();
+                            }
+                        });
                     }
                 });
+                snackbar.show();
+
+
 
             } catch (JSONException e) {
                 e.printStackTrace();
