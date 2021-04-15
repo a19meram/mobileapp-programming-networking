@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,6 +27,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+
+import static com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_INDEFINITE;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,10 +45,34 @@ public class MainActivity extends AppCompatActivity {
 
         mountainArrayList = new ArrayList<>();
         adapter = new ArrayAdapter<>(this,R.layout.list_item_textview, R.id.list_item_textview, mountainArrayList);
-
-        ListView my_listview = (ListView) findViewById(R.id.my_listview);
-        my_listview.setAdapter(adapter);
         new JsonTask().execute("https://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=brom");
+        final ListView my_listview = (ListView) findViewById(R.id.my_listview);
+        my_listview.setAdapter(adapter);
+        textView_info = findViewById(R.id.textview_info);
+        Snackbar make = Snackbar.make(my_listview, "Hela vägen ", LENGTH_INDEFINITE);
+        make.setAction("Open Toast", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                my_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String name = mountainArrayList.get(position).getName("name");
+                        String location = mountainArrayList.get(position).getLocation("Location");
+                        int size = mountainArrayList.get(position).getSize("size");
+
+                        String meddelande = name + " is located in mountain range " + location + " and reaches " + size + " m above the sea level.";
+
+                        Toast.makeText(MainActivity.this, meddelande, Toast.LENGTH_LONG).show();
+                    }
+                });
+                textView_info.setVisibility(View.INVISIBLE);
+            }
+        });
+        make.show();
+
+
+
+
         my_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
