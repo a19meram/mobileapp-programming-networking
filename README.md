@@ -3,40 +3,40 @@
 
 **Skriv din rapport här!**
 
-_Du kan ta bort all text som finns sedan tidigare_.
+Den här duggan gick ut på att man ska använda sig av en layout listview för att kunna skriva ut de olika json data som vi fick länk till av lärarna. 
+Sedan ska man göra en klass för att kunna sedan använda den med hjälp av en adapter där dessa används som en member variabel. 
+Eftersom klass strulade för mig och ledde till att jag fick mer error meddelande och syntaxfel valde jag att kalla på url:en direkt i JsonTask som vi fick färdigt av kurs läraren. 
+Detta ledde dock tilla att belastningen av kod blev väldigt mycket i onPostExecute, det vill säga att denna metod ska göra en sak i taget för att förbättra strukturen i koden annars kommer det att leda till s.k. “spaghetti kod”. 
+Därför fick jag hjälp av Daniel för att skapa en klass och sedan omplacerade jag koden så att det passar in till en rätt metod och för att kunna exekvera utan att det uppstår syntaxfel. 
 
-## Följande grundsyn gäller dugga-svar:
+Koden som visas ner tillhör exemplet av resultatet som visas i figur 1. 
+Det vill säga att man använder en snackbar med en onclickListener för att kunna godkänna innan man börjar trycka på de olika bergnamn, 
+så fort man öppnar toast i snackbar kommer man få möjligheten att se information om de olika färgerna i form av toast meddelande.
 
-- Ett kortfattat svar är att föredra. Svar som är längre än en sida text (skärmdumpar och programkod exkluderat) är onödigt långt.
-- Svaret skall ha minst en snutt programkod.
-- Svaret skall inkludera en kort övergripande förklarande text som redogör för vad respektive snutt programkod gör eller som svarar på annan teorifråga.
-- Svaret skall ha minst en skärmdump. Skärmdumpar skall illustrera exekvering av relevant programkod. Eventuell text i skärmdumpar måste vara läsbar.
-- I de fall detta efterfrågas, dela upp delar av ditt svar i för- och nackdelar. Dina för- respektive nackdelar skall vara i form av punktlistor med kortare stycken (3-4 meningar).
-
-Programkod ska se ut som exemplet nedan. Koden måste vara korrekt indenterad då den blir lättare att läsa vilket gör det lättare att hitta syntaktiska fel.
 
 ```
-function errorCallback(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            // Geolocation API stöds inte, gör något
-            break;
-        case error.POSITION_UNAVAILABLE:
-            // Misslyckat positionsanrop, gör något
-            break;
-        case error.UNKNOWN_ERROR:
-            // Okänt fel, gör något
-            break;
-    }
-}
+make.setAction("Open Toast", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                my_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String name = mountainArrayList.get(position).getName("name");
+                        String location = mountainArrayList.get(position).getLocation("Location");
+                        int size = mountainArrayList.get(position).getSize("size");
+                        String meddelande = name + " is located in mountain range " + location + " and reaches " + size + " m above the sea level.";
+                        Toast.makeText(MainActivity.this, meddelande, Toast.LENGTH_LONG).show();
+                        view.setSelected(true);
+                    }
+                });
+                textView_info.setVisibility(View.INVISIBLE);
+            }
+        });
+        make.show();
 ```
 
 Bilder läggs i samma mapp som markdown-filen.
 
-![](android.png)
+![](Figur1.png)
+![](Figur2.png)
 
-Läs gärna:
-
-- Boulos, M.N.K., Warren, J., Gong, J. & Yue, P. (2010) Web GIS in practice VIII: HTML5 and the canvas element for interactive online mapping. International journal of health geographics 9, 14. Shin, Y. &
-- Wunsche, B.C. (2013) A smartphone-based golf simulation exercise game for supporting arthritis patients. 2013 28th International Conference of Image and Vision Computing New Zealand (IVCNZ), IEEE, pp. 459–464.
-- Wohlin, C., Runeson, P., Höst, M., Ohlsson, M.C., Regnell, B., Wesslén, A. (2012) Experimentation in Software Engineering, Berlin, Heidelberg: Springer Berlin Heidelberg.
