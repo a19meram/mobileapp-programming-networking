@@ -69,22 +69,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         make.show();
-
-
-
-
-        my_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                String name = mountainArrayList.get(position).getName("name");
-                String location = mountainArrayList.get(position).getLocation("Location");
-                int size = mountainArrayList.get(position).getSize("size");
-
-                String meddelande = name + " is located in mountain range " + location + " and reaches " + size + " m above the sea level.";
-
-                Toast.makeText(MainActivity.this, meddelande, Toast.LENGTH_LONG).show();
-            }
-        });
     }
 
     @SuppressLint("StaticFieldLeak")
