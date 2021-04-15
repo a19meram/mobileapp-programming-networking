@@ -110,20 +110,13 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
                                 Toast.makeText(getApplicationContext(), MountainName.get(i) + " is located in mountain range " + MountainLocation.get(i) + " and reaches " + MountainSize.get(i) + " m above the sea level.", Toast.LENGTH_LONG).show();
+                                textView_info.setVisibility(View.INVISIBLE);
                             }
                         });
 
                     }
                 });
                 snackbar.show();
-                textView_info.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        textView_info.setVisibility(View.INVISIBLE);
-                        my_listview.setVisibility(View.VISIBLE);
-
-                    }
-                });
 
             } catch (JSONException e) {
                 e.printStackTrace();
