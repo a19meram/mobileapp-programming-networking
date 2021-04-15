@@ -11,6 +11,12 @@ public class Mountain {
         this.location = location;
     }
 
+    @Override
+    public String toString() {
+        return name;
+
+    }
+
     public String getName(String name) {
         return this.name;
     }
