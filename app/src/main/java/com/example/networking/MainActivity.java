@@ -4,16 +4,10 @@ import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,15 +22,21 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-import static com.google.android.material.snackbar.Snackbar.*;
-
 public class MainActivity extends AppCompatActivity {
+
     private TextView textView_info;
+    private ArrayList<Mountain> mountainArrayList = new ArrayList<>();
+    private ArrayAdapter<Mountain> adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         new JsonTask().execute("https://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=brom");
+
+        mountainArrayList = new ArrayList<>();
+        adapter = new ArrayAdapter<>(this,R.layout.list_item_textview, R.id.my_listview, mountainArrayList);
+
     }
 
     @SuppressLint("StaticFieldLeak")
@@ -45,9 +45,11 @@ public class MainActivity extends AppCompatActivity {
         private HttpURLConnection connection = null;
         private BufferedReader reader = null;
 
+
+        /*
         private ArrayList<String> mountainName = new ArrayList<String>();
         private ArrayList<String> mountainLocation = new ArrayList<String>();
-        private ArrayList<Integer> mountainSize = new ArrayList<Integer>();
+        private ArrayList<Integer> mountainSize = new ArrayList<Integer>();*/
 
         protected String doInBackground(String... params) {
             try {
@@ -94,11 +96,10 @@ public class MainActivity extends AppCompatActivity {
                     String location = jsonObject.getString("location");
                     int size = jsonObject.getInt("size");
 
-                    mountainName.add(name);
-                    mountainLocation.add(location);
-                    mountainSize.add(size);
+                    mountainArrayList.add(new Mountain(name, size, location));
                 }
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, R.layout.list_item_textview, R.id.list_item_textview, mountainName);
+                /*
+                final ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, R.layout.list_item_textview, R.id.list_item_textview, mountainArrayList);
                 final ListView my_listview = (ListView) findViewById(R.id.my_listview);
                 my_listview.setAdapter(adapter);
                 textView_info = findViewById(R.id.textview_info);
@@ -110,13 +111,17 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
                                 Toast.makeText(getApplicationContext(), mountainName.get(i) + " is located in mountain range " + mountainLocation.get(i) + " and reaches " + mountainSize.get(i) + " m above the sea level.", Toast.LENGTH_LONG).show();
+                                String name = mountainName.get(i);
+                                mountainName.clear();
+                                mountainName.add(name);
+                                adapter.notifyDataSetChanged();
                             }
                         });
                         textView_info.setVisibility(View.INVISIBLE);
                     }
                 });
                 snackbar.show();
-
+*/
             } catch (JSONException e) {
                 e.printStackTrace();
             }
