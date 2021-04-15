@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
                     mountainArrayList.add(new Mountain(name, size, location));
                 }
-
+                adapter.notifyDataSetChanged();
                 /*
                 final ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, R.layout.list_item_textview, R.id.list_item_textview, mountainArrayList);
                 final ListView my_listview = (ListView) findViewById(R.id.my_listview);
