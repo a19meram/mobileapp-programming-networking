@@ -45,8 +45,10 @@ public class MainActivity extends AppCompatActivity {
 
         my_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                String name = mountainArrayList.get(position).getName("name");
+                String location = mountainArrayList.get(position).getLocation("Location");
+                int size = mountainArrayList.get(position).getSize("size");
             }
         });
     }
