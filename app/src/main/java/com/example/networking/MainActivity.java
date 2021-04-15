@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,7 +31,7 @@ import java.util.ArrayList;
 import static com.google.android.material.snackbar.Snackbar.*;
 
 public class MainActivity extends AppCompatActivity {
-
+    private TextView textView_info;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,8 +101,8 @@ public class MainActivity extends AppCompatActivity {
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, R.layout.list_item_textview, R.id.list_item_textview, MountainName);
                 final ListView my_listview = (ListView) findViewById(R.id.my_listview);
                 my_listview.setAdapter(adapter);
-
-                Snackbar snackbar = make(my_listview,"Open------------------------------>", LENGTH_LONG);
+                textView_info = findViewById(R.id.textview_info);
+                final Snackbar snackbar = make(my_listview,"Open------------------------------>", LENGTH_LONG);
                 snackbar.setAction("Open Toast", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -111,11 +112,18 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), MountainName.get(i) + " is located in mountain range " + MountainLocation.get(i) + " and reaches " + MountainSize.get(i) + " m above the sea level.", Toast.LENGTH_LONG).show();
                             }
                         });
+
                     }
                 });
                 snackbar.show();
+                textView_info.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        textView_info.setVisibility(View.INVISIBLE);
+                        my_listview.setVisibility(View.VISIBLE);
 
-
+                    }
+                });
 
             } catch (JSONException e) {
                 e.printStackTrace();
