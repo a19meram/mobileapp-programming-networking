@@ -45,9 +45,9 @@ public class MainActivity extends AppCompatActivity {
         private HttpURLConnection connection = null;
         private BufferedReader reader = null;
 
-        private ArrayList<String> MountainName = new ArrayList<String>();
-        private ArrayList<String> MountainLocation = new ArrayList<String>();
-        private ArrayList<Integer> MountainSize = new ArrayList<Integer>();
+        private ArrayList<String> mountainName = new ArrayList<String>();
+        private ArrayList<String> mountainLocation = new ArrayList<String>();
+        private ArrayList<Integer> mountainSize = new ArrayList<Integer>();
 
         protected String doInBackground(String... params) {
             try {
@@ -94,11 +94,11 @@ public class MainActivity extends AppCompatActivity {
                     String location = jsonObject.getString("location");
                     int size = jsonObject.getInt("size");
 
-                    MountainName.add(name);
-                    MountainLocation.add(location);
-                    MountainSize.add(size);
+                    mountainName.add(name);
+                    mountainLocation.add(location);
+                    mountainSize.add(size);
                 }
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, R.layout.list_item_textview, R.id.list_item_textview, MountainName);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, R.layout.list_item_textview, R.id.list_item_textview, mountainName);
                 final ListView my_listview = (ListView) findViewById(R.id.my_listview);
                 my_listview.setAdapter(adapter);
                 textView_info = findViewById(R.id.textview_info);
@@ -109,8 +109,7 @@ public class MainActivity extends AppCompatActivity {
                         my_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
-                                Toast.makeText(getApplicationContext(), MountainName.get(i) + " is located in mountain range " + MountainLocation.get(i) + " and reaches " + MountainSize.get(i) + " m above the sea level.", Toast.LENGTH_LONG).show();
-
+                                Toast.makeText(getApplicationContext(), mountainName.get(i) + " is located in mountain range " + mountainLocation.get(i) + " and reaches " + mountainSize.get(i) + " m above the sea level.", Toast.LENGTH_LONG).show();
                             }
                         });
                         textView_info.setVisibility(View.INVISIBLE);
