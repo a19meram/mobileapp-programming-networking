@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 final ListView my_listview = (ListView) findViewById(R.id.my_listview);
                 my_listview.setAdapter(adapter);
                 textView_info = findViewById(R.id.textview_info);
-                final Snackbar snackbar = make(my_listview,"Open------------------------------>", LENGTH_LONG);
+                final Snackbar snackbar = make(my_listview,"Open------------------------------>", LENGTH_INDEFINITE);
                 snackbar.setAction("Open Toast", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -110,10 +110,10 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
                                 Toast.makeText(getApplicationContext(), MountainName.get(i) + " is located in mountain range " + MountainLocation.get(i) + " and reaches " + MountainSize.get(i) + " m above the sea level.", Toast.LENGTH_LONG).show();
-                                textView_info.setVisibility(View.INVISIBLE);
+
                             }
                         });
-
+                        textView_info.setVisibility(View.INVISIBLE);
                     }
                 });
                 snackbar.show();
