@@ -12,7 +12,7 @@ Därför fick jag hjälp av Daniel för att skapa en klass och sedan omplacerade
 Koden som visas ner tillhör exemplet av resultatet som visas i figur 1. 
 Det vill säga att man använder en snackbar med en onclickListener för att kunna godkänna innan man börjar trycka på de olika bergnamn, 
 så fort man öppnar toast i snackbar kommer man få möjligheten att se information om de olika färgerna i form av toast meddelande.
-
+Den gröna bakgrunden som finns i figur 2 är tänkt för att vara en highlight färg för clicken man gör på de olika items som finns i listview, detta gjorde man med hjälp av *view.setSelected(true)*. 
 
 ```
 make.setAction("Open Toast", new View.OnClickListener() {
