@@ -4,7 +4,10 @@ import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +40,15 @@ public class MainActivity extends AppCompatActivity {
         mountainArrayList = new ArrayList<>();
         adapter = new ArrayAdapter<>(this,R.layout.list_item_textview, R.id.my_listview, mountainArrayList);
 
+        ListView my_listview = (ListView) findViewById(R.id.my_listview);
+        my_listview.setAdapter(adapter);
+
+        my_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+        });
     }
 
     @SuppressLint("StaticFieldLeak")
