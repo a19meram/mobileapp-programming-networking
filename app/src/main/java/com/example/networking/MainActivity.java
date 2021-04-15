@@ -93,12 +93,6 @@ public class MainActivity extends AppCompatActivity {
         private HttpURLConnection connection = null;
         private BufferedReader reader = null;
 
-
-        /*
-        private ArrayList<String> mountainName = new ArrayList<String>();
-        private ArrayList<String> mountainLocation = new ArrayList<String>();
-        private ArrayList<Integer> mountainSize = new ArrayList<Integer>();*/
-
         protected String doInBackground(String... params) {
             try {
                 URL url = new URL(params[0]);
@@ -149,30 +143,6 @@ public class MainActivity extends AppCompatActivity {
                     mountainArrayList.add(new Mountain(name, size, location));
                 }
                 adapter.notifyDataSetChanged();
-                /*
-                final ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, R.layout.list_item_textview, R.id.list_item_textview, mountainArrayList);
-                final ListView my_listview = (ListView) findViewById(R.id.my_listview);
-                my_listview.setAdapter(adapter);
-                textView_info = findViewById(R.id.textview_info);
-                final Snackbar snackbar = make(my_listview,"Open------------------------------>", LENGTH_INDEFINITE);
-                snackbar.setAction("Open Toast", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        my_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
-                                Toast.makeText(getApplicationContext(), mountainName.get(i) + " is located in mountain range " + mountainLocation.get(i) + " and reaches " + mountainSize.get(i) + " m above the sea level.", Toast.LENGTH_LONG).show();
-                                String name = mountainName.get(i);
-                                mountainName.clear();
-                                mountainName.add(name);
-                                adapter.notifyDataSetChanged();
-                            }
-                        });
-                        textView_info.setVisibility(View.INVISIBLE);
-                    }
-                });
-                snackbar.show();
-*/
             } catch (JSONException e) {
                 e.printStackTrace();
             }
