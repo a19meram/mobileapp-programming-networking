@@ -59,10 +59,9 @@ public class MainActivity extends AppCompatActivity {
                         String name = mountainArrayList.get(position).getName("name");
                         String location = mountainArrayList.get(position).getLocation("Location");
                         int size = mountainArrayList.get(position).getSize("size");
-
                         String meddelande = name + " is located in mountain range " + location + " and reaches " + size + " m above the sea level.";
-
                         Toast.makeText(MainActivity.this, meddelande, Toast.LENGTH_LONG).show();
+                        view.setSelected(true);
                     }
                 });
                 textView_info.setVisibility(View.INVISIBLE);

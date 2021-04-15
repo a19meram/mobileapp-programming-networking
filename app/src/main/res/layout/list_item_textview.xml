@@ -9,7 +9,8 @@
     android:textSize="35dp"
     android:layout_marginTop="100dp"
     android:textColor="@color/textColor"
-    android:background="@color/colorAccent"
+    android:background="@drawable/highlight"
+
     >
 
 </TextView>
